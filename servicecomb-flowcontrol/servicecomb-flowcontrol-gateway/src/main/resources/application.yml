@@ -1,0 +1,10 @@
+zuul:
+  routes:
+    calculator: /calculator/**
+
+# disable netflix eureka since it's not used for service discovery
+ribbon:
+  eureka:
+    enabled: false
+server:
+  port: 8889

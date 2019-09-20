@@ -1,0 +1,26 @@
+APPLICATION_ID: bmi
+service_description:
+  name: calculator
+  version: 0.0.1
+servicecomb:
+  handler:
+      chain:
+        Provider:
+          default: qps-flowcontrol-provider,bizkeeper-provider
+  circuitBreaker:
+      Provider:
+        calculator:
+          requestVolumeThreshold: 3
+  fallbackpolicy:
+      Provider:
+        policy: returnnull
+  flowcontrol:
+    Provider:
+      qps:
+        limit:
+          gateway: 1000
+  service:
+    registry:
+      address: http://192.168.116.151:30100
+  rest:
+    address: 0.0.0.0:7777
